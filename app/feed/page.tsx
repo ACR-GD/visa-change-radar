@@ -1,15 +1,45 @@
+import fs from "fs";
+import path from "path";
 import Link from "next/link";
 
-async function fetchChanges() {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL || ""}/api/changes`, {
-    cache: "no-store",
-  });
-  if (!res.ok) return { sources: [], changeEvents: [] };
-  return res.json();
+async function loadChanges() {
+  const root = process.cwd();
+  const changesRoot = path.join(root, "data", "changes");
+  const sourcesPath = path.join(root, "data", "sources", "sources.json");
+
+  let sources: any[] = [];
+  if (fs.existsSync(sourcesPath)) {
+    try {
+      sources = JSON.parse(fs.readFileSync(sourcesPath, "utf8"));
+    } catch {
+      sources = [];
+    }
+  }
+
+  let changeEvents: any[] = [];
+  if (fs.existsSync(changesRoot)) {
+    const files = fs
+      .readdirSync(changesRoot)
+      .filter((f) => f.endsWith(".json"))
+      .sort()
+      .slice(-100);
+    changeEvents = files
+      .map((file) => {
+        try {
+          const content = fs.readFileSync(path.join(changesRoot, file), "utf8");
+          return JSON.parse(content);
+        } catch {
+          return null;
+        }
+      })
+      .filter(Boolean);
+  }
+
+  return { sources, changeEvents };
 }
 
 export default async function FeedPage() {
-  const { sources, changeEvents } = await fetchChanges();
+  const { sources, changeEvents } = await loadChanges();
 
   const sourcesById: Record<string, any> = {};
   for (const s of sources || []) {
