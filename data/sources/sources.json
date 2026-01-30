@@ -1,0 +1,30 @@
+[
+  {
+    "id": "malaysia_de_rantau",
+    "country": "Malaysia",
+    "name": "MDEC DE Rantau Nomad Pass",
+    "url": "https://mdec.my/derantau",
+    "category": "digital_nomad"
+  },
+  {
+    "id": "malaysia_mm2h",
+    "country": "Malaysia",
+    "name": "Malaysia My Second Home (MM2H) - MOTAC",
+    "url": "https://www.malaysia.gov.my/portal/content/28905",
+    "category": "residency"
+  },
+  {
+    "id": "thailand_long_term_resident",
+    "country": "Thailand",
+    "name": "Thailand Long-Term Resident Visa",
+    "url": "https://ltr.boi.go.th/index.html",
+    "category": "residency"
+  },
+  {
+    "id": "portugal_digital_nomad",
+    "country": "Portugal",
+    "name": "Portugal Digital Nomad Visa",
+    "url": "https://imigrante.sef.pt/en/solicitar/residir/artigo-61b/",
+    "category": "digital_nomad"
+  }
+]

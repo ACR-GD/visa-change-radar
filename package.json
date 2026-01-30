@@ -6,7 +6,9 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "scrape:sources": "node scripts/scrape_sources.js",
+    "monitor:changes": "node scripts/check_changes.js"
   },
   "dependencies": {
     "next": "16.1.6",
