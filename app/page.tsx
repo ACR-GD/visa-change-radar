@@ -2,63 +2,85 @@ import Link from "next/link";
 
 export default function Home() {
   return (
-    <main className="min-h-screen bg-slate-950 text-slate-50">
+    <main className="min-h-screen bg-slate-950 text-slate-50 flex flex-col">
       {/* Hero */}
       <section className="border-b border-slate-800 bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950">
-        <div className="max-w-5xl mx-auto px-4 py-10 lg:py-16 space-y-6">
-          <p className="inline-flex items-center gap-2 rounded-full border border-slate-800 bg-slate-900/70 px-3 py-1 text-[11px] font-mono text-slate-300">
-            <span className="w-2 h-2 rounded-full bg-sky-400" />
-            VisaChangeRadar • Track visa rule changes for key countries
-          </p>
-          <div className="space-y-4">
-            <h1 className="text-3xl md:text-4xl lg:text-5xl font-semibold tracking-tight text-slate-50">
-              Never be surprised by a visa rule change again.
-            </h1>
-            <p className="text-sm md:text-base text-slate-300 max-w-xl leading-relaxed">
-              VisaChangeRadar monitors official immigration pages for subtle edits — like Malaysia doubling the
-              minimum salary for Category I work permits from 10,000 MYR to 20,000 MYR on 1 June 2026 — and turns them
-              into a simple, human-readable feed.
-            </p>
+        <div className="max-w-5xl mx-auto px-4 py-12 lg:py-18 space-y-8">
+          <div className="inline-flex items-center gap-2 rounded-full border border-slate-800 bg-slate-900/80 px-3 py-1 text-[11px] font-mono text-slate-300">
+            <span className="w-2 h-2 rounded-full bg-emerald-400" />
+            VisaChangeRadar · tiny tool, big peace of mind
           </div>
 
-          <div className="flex flex-wrap gap-3 pt-1 text-sm items-center">
-            <Link
-              href="/feed"
-              className="bg-sky-500 hover:bg-sky-400 text-slate-950 font-semibold py-2.5 px-6 rounded-full text-sm shadow-lg shadow-sky-500/30 transition-all transform hover:-translate-y-0.5"
-            >
-              View recent changes
-            </Link>
-            <span className="inline-flex items-center gap-2 text-[11px] text-slate-400">
-              <span className="w-2 h-2 rounded-full bg-emerald-400" />
-              Currently tracking: Malaysia, Thailand, Portugal. More coming.
-            </span>
+          <div className="grid gap-8 md:grid-cols-[minmax(0,3fr)_minmax(0,2fr)] items-start">
+            <div className="space-y-5">
+              <h1 className="text-3xl md:text-4xl lg:text-5xl font-semibold tracking-tight text-slate-50">
+                Keep an eye on visa rules,
+                <br className="hidden md:block" /> even when you&apos;re not.
+              </h1>
+              <p className="text-sm md:text-base text-slate-200/90 leading-relaxed max-w-xl">
+                VisaChangeRadar quietly watches key immigration pages for you. When something important changes — like
+                Malaysia suddenly doubling the minimum salary for a work permit — you get a clear, human summary instead
+                of a nasty surprise.
+              </p>
+
+              <div className="flex flex-wrap gap-3 pt-1 items-center">
+                <Link
+                  href="/feed"
+                  className="bg-emerald-400 hover:bg-emerald-300 text-slate-950 font-semibold py-2.5 px-6 rounded-full text-sm shadow-md shadow-emerald-400/30 transition-all transform hover:-translate-y-0.5"
+                >
+                  See example changes
+                </Link>
+                <span className="inline-flex flex-col gap-1 text-[11px] text-slate-400">
+                  <span>Currently tracking: Malaysia, Thailand, Portugal.</span>
+                  <span className="text-slate-500">More destinations can be added as simply as editing a JSON file.</span>
+                </span>
+              </div>
+            </div>
+
+            <div className="hidden md:block">
+              <div className="rounded-2xl border border-slate-800 bg-slate-900/80 p-4 shadow-[0_20px_60px_rgba(15,23,42,0.8)] space-y-3 text-xs text-slate-200 font-mono">
+                <p className="text-[10px] uppercase tracking-[0.18em] text-slate-500 mb-1">Sample alert</p>
+                <div className="rounded-xl bg-slate-900/80 border border-slate-700 p-3 space-y-1">
+                  <p className="text-[11px] text-emerald-300">Malaysia · Employment Pass Category I</p>
+                  <p className="text-[11px] text-slate-100">
+                    Minimum salary requirement updated from
+                    <span className="font-semibold"> 10,000 MYR</span> to
+                    <span className="font-semibold"> 20,000 MYR</span> per month.
+                  </p>
+                  <p className="text-[10px] text-slate-400">Detected on 1 June 2026 · Source: official immigration portal</p>
+                </div>
+                <p className="text-[10px] text-slate-500">
+                  No scraping dashboards or diffs to read. Just small, focused updates you actually care about.
+                </p>
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* What it does / Who it's for */}
+      {/* What it does / Who it&apos;s for */}
       <section className="max-w-5xl mx-auto px-4 py-10 space-y-8">
         <div className="grid gap-6 md:grid-cols-2 text-xs md:text-sm">
           <div className="space-y-3">
             <p className="text-[11px] uppercase tracking-[0.18em] text-slate-500 font-medium">What it does</p>
             <ul className="space-y-2 text-slate-200">
               <li>
-                • Watches selected government and agency pages (MDEC, MOTAC, BOI, SEF…) for content changes.
+                • Checks a short list of official pages (MDEC, MOTAC, BOI, SEF…) on a schedule you control.
               </li>
               <li>
-                • Records each change as a structured event (country, source, timestamp, diff score).
+                • Spots when wording changes, requirements move, or new sections appear.
               </li>
               <li>
-                • Exposes a clean feed and JSON API you can plug into alerts, dashboards or AI summaries.
+                • Stores each change with country, source, timestamp and a simple &quot;how big is this?&quot; score.
               </li>
             </ul>
           </div>
           <div className="space-y-3">
-            <p className="text-[11px] uppercase tracking-[0.18em] text-slate-500 font-medium">Who it's for</p>
+            <p className="text-[11px] uppercase tracking-[0.18em] text-slate-500 font-medium">Who it&apos;s for</p>
             <ul className="space-y-2 text-slate-200">
-              <li>• Solo founders building immigration / relocation products.</li>
-              <li>• Operators who need to know when rules move before clients do.</li>
-              <li>• Nomad creators who want accurate visa info without reading entire portals daily.</li>
+              <li>• Makers building visa / relocation products who don&apos;t want to maintain scrapers from scratch.</li>
+              <li>• People like toi qui veulent dormir tranquilles en sachant que quelqu&apos;un surveille les règles.</li>
+              <li>• Newsletter / content creators who want reliable “what changed this week?” sections.</li>
             </ul>
           </div>
         </div>
@@ -67,19 +89,19 @@ export default function Home() {
         <div className="space-y-3">
           <p className="text-[11px] uppercase tracking-[0.18em] text-slate-500 font-medium">How it works</p>
           <p className="text-xs md:text-sm text-slate-300 max-w-2xl">
-            You control the schedule (cron / CI / server). VisaChangeRadar grabs the latest HTML, compares it to the
-            previous snapshot, and stores any meaningful difference as a change event.
+            Under the hood it&apos;s simple on purpose. You add or edit sources, plug the scripts into your cron, and then
+            just read the feed or wire it into your own alerts / AI.
           </p>
           <div className="grid gap-4 md:grid-cols-3 text-xs md:text-sm text-slate-200">
             <div className="rounded-2xl border border-slate-800 bg-slate-900/70 p-4 space-y-1">
-              <p className="font-semibold">1. Define sources</p>
+              <p className="font-semibold">1. Pick your pages</p>
               <p className="text-slate-300">
-                Configure official URLs per country in
+                Drop the official URLs you care about into
                 <code className="font-mono text-[11px]"> data/sources/sources.json</code>.
               </p>
             </div>
             <div className="rounded-2xl border border-slate-800 bg-slate-900/70 p-4 space-y-1">
-              <p className="font-semibold">2. Run scrapers via cron</p>
+              <p className="font-semibold">2. Let the cron do its job</p>
               <p className="text-slate-300">
                 Your scheduler runs
                 <code className="font-mono text-[11px]"> npm run scrape:sources</code>
@@ -89,15 +111,15 @@ export default function Home() {
               </p>
             </div>
             <div className="rounded-2xl border border-slate-800 bg-slate-900/70 p-4 space-y-1">
-              <p className="font-semibold">3. Consume the feed</p>
+              <p className="font-semibold">3. Read the signal, ignore the noise</p>
               <p className="text-slate-300">
                 Use the
                 <code className="font-mono text-[11px]"> /feed</code>
                 {" "}
-                page or the
+                page or
                 <code className="font-mono text-[11px]"> /api/changes</code>
                 {" "}
-                endpoint to drive alerts, dashboards or AI agents.
+                to drive alerts, dashboards or your own AI agent.
               </p>
             </div>
           </div>
@@ -109,26 +131,26 @@ export default function Home() {
         <div className="space-y-4">
           <p className="text-[11px] uppercase tracking-[0.18em] text-slate-500 font-medium">Pricing (draft)</p>
           <p className="text-xs md:text-sm text-slate-400 max-w-2xl">
-            This is a developer‑first tool. The core is open for you to self‑host and customise. A hosted version with
-            email alerts and AI summaries could follow this simple model:
+            Today, this is a small self‑hosted tool you can plug into your own stack. If it proves useful, a hosted
+            version with email alerts and AI summaries could look like this:
           </p>
           <div className="grid gap-4 md:grid-cols-2 text-xs md:text-sm">
-            <div className="rounded-2xl border border-slate-800 bg-slate-900/70 p-4 space-y-2">
-              <p className="font-semibold text-slate-50">Builder</p>
+            <div className="rounded-2xl border border-slate-800 bg-slate-900/80 p-4 space-y-2">
+              <p className="font-semibold text-slate-50">Builder (now)</p>
               <p className="text-slate-300">Self‑hosted • Free</p>
               <ul className="space-y-1 text-slate-300 mt-1">
                 <li>• All code on GitHub.</li>
-                <li>• Local scraping & diffing.</li>
-                <li>• JSON API + basic feed UI.</li>
+                <li>• Local scraping & diffing for your own sources.</li>
+                <li>• JSON API + simple feed UI you can customise.</li>
               </ul>
             </div>
-            <div className="rounded-2xl border border-slate-700 bg-slate-900/80 p-4 space-y-2">
-              <p className="font-semibold text-slate-50">Pro (idea)</p>
-              <p className="text-slate-300">Hosted • ~$19/mo</p>
-              <ul className="space-y-1 text-slate-300 mt-1">
-                <li>• Managed scraping for multiple countries.</li>
-                <li>• Daily email summary of key changes.</li>
-                <li>• AI‑generated plain‑language explanations.</li>
+            <div className="rounded-2xl border border-emerald-700/60 bg-emerald-950/40 p-4 space-y-2">
+              <p className="font-semibold text-emerald-100">Pro (idea)</p>
+              <p className="text-emerald-200">Hosted • ~19$/mo</p>
+              <ul className="space-y-1 text-emerald-100/90 mt-1">
+                <li>• Managed scraping for multiple countries & sources.</li>
+                <li>• Daily or weekly email & Telegram summaries.</li>
+                <li>• Plain‑language explanations ready to paste into your product.</li>
               </ul>
             </div>
           </div>
